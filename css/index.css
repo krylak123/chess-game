@@ -1,2 +1,2 @@
-*,*::before,*::after{margin:0;padding:0;-webkit-box-sizing:border-box;box-sizing:border-box}
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Bellefair&family=Roboto:wght@400;700&display=swap");*,*::before,*::after{margin:0;padding:0;-webkit-box-sizing:border-box;box-sizing:border-box}html{font-family:"Roboto",sans-serif;font-size:10px}body{background:-webkit-gradient(linear, left top, right top, from(#bf94e3), to(#826996));background:linear-gradient(90deg, #bf94e3, #826996)}.wrapper{margin:0 auto;max-width:1280px;min-height:100vh}
 /*# sourceMappingURL=index.css.map */

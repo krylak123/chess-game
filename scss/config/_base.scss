@@ -5,3 +5,18 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+html {
+  font-family: $font-family-primary;
+  font-size: $font-size-default;
+}
+
+body {
+  background: linear-gradient(90deg, #bf94e3, #826996);
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1280px;
+  min-height: 100vh;
+}
