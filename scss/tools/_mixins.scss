@@ -1,0 +1,17 @@
+@mixin mq($breakpoint, $orientation) {
+  $size: map-get(
+    $map: $breakpoints,
+    $key: $breakpoint,
+  );
+  $structure: map-get(
+    $map: $orientations,
+    $key: $orientation,
+  );
+  @if ($size and $structure) {
+    @media screen and #{$size} and #{$structure} {
+      @content;
+    }
+  } @else {
+    @error 'this "#{$breakpoint}" breakpoint or "#{$orientation}" orientation doesn\'t exist';
+  }
+}

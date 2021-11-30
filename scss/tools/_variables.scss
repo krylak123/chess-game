@@ -1,0 +1,32 @@
+$breakpoints: (
+  xxsmall: (
+    min-width: 360px,
+  ),
+  xsmall: (
+    min-width: 460px,
+  ),
+  small: (
+    min-width: 800px,
+  ),
+  medium: (
+    min-width: 1024px,
+  ),
+  large: (
+    min-width: 1280px,
+  ),
+  xlarge: (
+    min-width: 1440px,
+  ),
+  xxlarge: (
+    min-width: 1600px,
+  ),
+);
+
+$orientations: (
+  port: (
+    orientation: portrait,
+  ),
+  land: (
+    orientation: landscape,
+  ),
+);
