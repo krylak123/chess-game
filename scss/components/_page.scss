@@ -31,11 +31,5 @@
 
   &__content {
     grid-area: content;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px;
-
-    background-color: rgba(153, 136, 119, 0.445);
   }
 }

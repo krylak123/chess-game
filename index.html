@@ -50,6 +50,9 @@
                     </div>
                     <div class="panel__timeline-container timeline">
                         <h3 class="panel__title">Game Timeline</h3>
+                        <p class="timeline__timer">
+                            <span class="timeline__timer-minutes">00</span>:<span class="timeline__timer-seconds">00</span>
+                        </p>
                         <ul class="timeline__list">
                             <li class="timeline__list-item">text</li>
                             <li class="timeline__list-item">text</li>
@@ -72,7 +75,12 @@
                     </footer>
                 </div>
             </section>
-            <section class="page__content"></section>
+            <section class="page__content content">
+                <div class="content__board" id="myBoard"></div>
+                <div class="content__modal content__modal--open">
+                    <button class="content__btn">start game</button>
+                </div>
+            </section>
         </main>
     </div>
 

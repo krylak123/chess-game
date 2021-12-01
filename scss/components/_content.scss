@@ -1,0 +1,44 @@
+.content {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+
+  &__board {
+    width: 90%;
+  }
+
+  &__modal {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0;
+    width: 90%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+
+    &--open {
+      display: flex;
+    }
+  }
+
+  &__btn {
+    display: block;
+    padding: 15px 30px;
+    font-family: $font-family-primary;
+    font-size: 2rem;
+    outline-style: none;
+    border-style: none;
+    cursor: pointer;
+  }
+
+  @include mq(large, land) {
+    &__btn {
+      font-size: 3rem;
+    }
+  }
+}
