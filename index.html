@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,8 +30,49 @@
     <div class="wrapper">
         <main class="page">
             <h1 class="page__title">Chess Game</h1>
+            <h2 class="page__title page__title--subtitle">Player vs Computer</h2>
+            <section class="page__panel panel">
+                <div class="panel__top-container">
+                    <div class="panel__stats-container stats">
+                        <h3 class="panel__title panel__title--stats">Statistics</h3>
+                        <article class="stats__container stats__container--win">
+                            <p class="stats__value">0</p>
+                            <p class="stats__name">win</p>
+                        </article>
+                        <article class="stats__container stats__container--score">
+                            <p class="stats__value">0</p>
+                            <p class="stats__name">score</p>
+                        </article>
+                        <article class="stats__container stats__container--lose">
+                            <p class="stats__value">0</p>
+                            <p class="stats__name">lose</p>
+                        </article>
+                    </div>
+                    <div class="panel__timeline-container timeline">
+                        <h3 class="panel__title">Game Timeline</h3>
+                        <ul class="timeline__list">
+                            <li class="timeline__list-item">text</li>
+                            <li class="timeline__list-item">text</li>
+                            <li class="timeline__list-item">text</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel__bottom-container">
+                    <!-- <div class="panel__rules-container">rules</div> -->
+                    <footer class="footer">
+                        <div class="footer__img-container"><img src="./images/chesspieces/bK.png" alt="black king"
+                                class="footer__img"></div>
+                        <div class="footer__text-container">
+                            <p class="footer__text">Created by
+                                <a href="https://github.com/krylak123" class="footer__text footer__text--link">krylak123</a>
+                            </p>
+                        </div>
+                        <div class="footer__img-container"><img src="./images/chesspieces/wQ.png" alt="white queen"
+                                class="footer__img"></div>
+                    </footer>
+                </div>
+            </section>
             <section class="page__content"></section>
-            <section class="page__panel"></section>
         </main>
     </div>
 
@@ -41,6 +83,7 @@
         integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD" crossorigin="anonymous">
     </script>
     <script src="./js/index.js"></script>
+
 </body>
 
 </html>

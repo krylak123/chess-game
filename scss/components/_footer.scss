@@ -1,0 +1,32 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+
+  &__text-container {
+    display: flex;
+    align-items: center;
+  }
+
+  &__text {
+    text-align: center;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+
+    &--link {
+      font-size: 1.5rem;
+      letter-spacing: 0;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+
+  @include mq(large, land) {
+    &__text {
+      font-size: 1.8rem;
+
+      &--link {
+        font-size: 2rem;
+      }
+    }
+  }
+}
