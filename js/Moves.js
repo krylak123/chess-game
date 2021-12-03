@@ -14,17 +14,17 @@ class Moves {
     this.coords = new Coordinates();
   }
 
-  getCurrentPieceMoves(piece, coords) {
+  getCurrentPieceMoves(piece, coords, position) {
     if (piece.search(/P/) !== -1) {
-      return this.pawnMoves(piece, coords);
+      return this.pawnMoves(piece, coords, position);
     } else if (piece.search(/Q/) !== -1) {
-      return this.queenMoves(piece, coords);
+      return this.queenMoves(piece, coords, position);
     } else if (piece.search(/K/) !== -1) {
-      return this.kingMoves(piece, coords);
+      return this.kingMoves(piece, coords, position);
     }
   }
 
-  pawnMoves(piece, coords) {
+  pawnMoves(piece, coords, position) {
     const moves = [];
 
     const posY = coords[0];
@@ -78,7 +78,7 @@ class Moves {
         let newPosY = posY + direct[0];
         let newPosX = posX + direct[1];
 
-        if (newPosY < 0 || newPosY > 7) continue;
+        if (newPosY < 0 || newPosY > 7 || newPosX < 0 || newPosX > 7) continue;
 
         moves.push([newPosY, newPosX]);
       }
@@ -87,7 +87,7 @@ class Moves {
         let newPosY = posY + direct[0];
         let newPosX = posX + direct[1];
 
-        if (newPosY < 0 || newPosY > 7) continue;
+        if (newPosY < 0 || newPosY > 7 || newPosX < 0 || newPosX > 7) continue;
 
         moves.push([newPosY, newPosX]);
       }
@@ -114,7 +114,7 @@ class Moves {
         let newPosY = posY + direct[0];
         let newPosX = posX + direct[1];
 
-        if (newPosY < 0 || newPosY > 7) continue;
+        if (newPosY < 0 || newPosY > 7 || newPosX < 0 || newPosX > 7) continue;
 
         moves.push([newPosY, newPosX]);
       }
@@ -123,7 +123,7 @@ class Moves {
         let newPosY = posY + direct[0];
         let newPosX = posX + direct[1];
 
-        if (newPosY < 0 || newPosY > 7) continue;
+        if (newPosY < 0 || newPosY > 7 || newPosX < 0 || newPosX > 7) continue;
 
         moves.push([newPosY, newPosX]);
       }
@@ -132,9 +132,9 @@ class Moves {
     return this.coords.convertToBoardNotation(moves);
   }
 
-  generateMoves(source, piece) {
+  generateMoves(source, piece, position) {
     const coords = this.coords.convertToTableNotation(source);
-    const moves = this.getCurrentPieceMoves(piece, coords);
+    const moves = this.getCurrentPieceMoves(piece, coords, position);
 
     return moves;
   }
