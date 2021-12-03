@@ -24,17 +24,24 @@ class GameChess {
     if (this.gameOver) return false;
     if (piece.search(/^b/) !== -1) return false;
 
-    this.moves.showLegalMoves(source, piece);
+    const legalMoves = this.moves.generateMoves(source, piece);
 
-    //show legal moves
+    legalMoves.forEach(move => {
+      document.querySelector(`[data-square=${move}]`).classList.add('legalMove');
+    });
   }
 
   onDrop(source, target, piece, newPos, oldPos, orientation) {
-    console.log('on drop');
+    const legalMoves = this.moves.generateMoves(source, piece);
 
-    //check move legal
+    legalMoves.forEach(move => {
+      document.querySelector(`[data-square=${move}]`).classList.remove('legalMove');
+    });
+
+    if (source === target) return;
+    if (!legalMoves.find(move => move === target)) return 'snapback';
+
     //if legal updateStatus and start opponent AI
-    //if illegal onSnapbackEnd
   }
 
   onSnapbackEnd(piece, square, position, orientation) {
