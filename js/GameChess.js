@@ -24,7 +24,7 @@ class GameChess {
     if (this.gameOver) return false;
     if (piece.search(/^b/) !== -1) return false;
 
-    const legalMoves = this.moves.generateMoves(source, piece);
+    const legalMoves = this.moves.generateMoves(source, piece, position);
 
     legalMoves.forEach(move => {
       document.querySelector(`[data-square=${move}]`).classList.add('legalMove');
@@ -32,7 +32,7 @@ class GameChess {
   }
 
   onDrop(source, target, piece, newPos, oldPos, orientation) {
-    const legalMoves = this.moves.generateMoves(source, piece);
+    const legalMoves = this.moves.generateMoves(source, piece, oldPos);
 
     legalMoves.forEach(move => {
       document.querySelector(`[data-square=${move}]`).classList.remove('legalMove');

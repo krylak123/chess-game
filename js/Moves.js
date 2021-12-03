@@ -24,6 +24,26 @@ class Moves {
     }
   }
 
+  checkPositionOccupiedByPieceColorWhite(newPosY, newPosX, position) {
+    const coord = this.coords.convertToBoardNotation([[newPosY, newPosX]]);
+
+    if (position[coord[0]]) {
+      if (position[coord[0]].search(/^w/) !== -1) return true;
+    }
+
+    return false;
+  }
+
+  checkPositionOccupiedByPieceColorBlack(newPosY, newPosX, position) {
+    const coord = this.coords.convertToBoardNotation([[newPosY, newPosX]]);
+
+    if (position[coord[0]]) {
+      if (position[coord[0]].search(/^b/) !== -1) return true;
+    }
+
+    return false;
+  }
+
   pawnMoves(piece, coords, position) {
     const moves = [];
 
@@ -39,6 +59,7 @@ class Moves {
         let newPosX = posX + direct[1];
 
         if (newPosY < 0) continue;
+        if (this.checkPositionOccupiedByPieceColorWhite(newPosY, newPosX, position)) continue;
 
         moves.push([newPosY, newPosX]);
       }
@@ -48,6 +69,7 @@ class Moves {
         let newPosX = posX + direct[1];
 
         if (newPosY > 7) continue;
+        if (this.checkPositionOccupiedByPieceColorBlack(newPosY, newPosX, position)) continue;
 
         moves.push([newPosY, newPosX]);
       }
@@ -56,7 +78,7 @@ class Moves {
     return this.coords.convertToBoardNotation(moves);
   }
 
-  queenMoves(piece, coords) {
+  queenMoves(piece, coords, position) {
     const moves = [];
 
     const posY = coords[0];
@@ -79,6 +101,7 @@ class Moves {
         let newPosX = posX + direct[1];
 
         if (newPosY < 0 || newPosY > 7 || newPosX < 0 || newPosX > 7) continue;
+        if (this.checkPositionOccupiedByPieceColorWhite(newPosY, newPosX, position)) continue;
 
         moves.push([newPosY, newPosX]);
       }
@@ -88,6 +111,7 @@ class Moves {
         let newPosX = posX + direct[1];
 
         if (newPosY < 0 || newPosY > 7 || newPosX < 0 || newPosX > 7) continue;
+        if (this.checkPositionOccupiedByPieceColorBlack(newPosY, newPosX, position)) continue;
 
         moves.push([newPosY, newPosX]);
       }
@@ -96,9 +120,8 @@ class Moves {
     return this.coords.convertToBoardNotation(moves);
   }
 
-  kingMoves(piece, coords) {
+  kingMoves(piece, coords, position) {
     const moves = [];
-
     const posY = coords[0];
     const posX = coords[1];
 
@@ -115,6 +138,7 @@ class Moves {
         let newPosX = posX + direct[1];
 
         if (newPosY < 0 || newPosY > 7 || newPosX < 0 || newPosX > 7) continue;
+        if (this.checkPositionOccupiedByPieceColorWhite(newPosY, newPosX, position)) continue;
 
         moves.push([newPosY, newPosX]);
       }
@@ -124,6 +148,7 @@ class Moves {
         let newPosX = posX + direct[1];
 
         if (newPosY < 0 || newPosY > 7 || newPosX < 0 || newPosX > 7) continue;
+        if (this.checkPositionOccupiedByPieceColorBlack(newPosY, newPosX, position)) continue;
 
         moves.push([newPosY, newPosX]);
       }
