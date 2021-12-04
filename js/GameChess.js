@@ -1,5 +1,6 @@
 class GameChess {
   constructor(boardID, FEN) {
+    this.status = new Status();
     this.moves = new Moves();
 
     this.boardConfig = {
@@ -12,17 +13,14 @@ class GameChess {
     this.board = Chessboard(boardID, this.boardConfig);
     this.FENposition = FEN;
 
-    this.gameOver = false;
-    this.turn = 'w';
-
     this.modalStart = document.querySelector('.content__modal');
 
     this.init();
   }
 
   onDragStart(source, piece, position, orientation) {
-    if (this.gameOver) return false;
-    if (piece.search(/^b/) !== -1) return false;
+    if (this.status.gameIsOver) return false;
+    else if (piece.search(/^b/) !== -1 || this.status.gameTurn !== 'w') return false;
 
     const legalMoves = this.moves.generateMoves(source, piece, position);
 
@@ -40,7 +38,14 @@ class GameChess {
 
     if (source === target) return;
     if (!legalMoves.find(move => move === target)) return 'snapback';
+    if (piece.includes('P') && target.includes('8')) {
+      const replace = (newPos[target] = 'wQ');
+      this.board.position(Chessboard.objToFen(newPos, replace));
+      return 'trash';
+    }
 
+    // this.status.changeGameTurn('b');
+    //check if is a winner (newPos)
     //if legal updateStatus and start opponent AI
   }
 
@@ -62,3 +67,10 @@ class GameChess {
     document.querySelector('.content__btn').addEventListener('click', this.gameStart.bind(this));
   }
 }
+
+//TODO
+//zbijanie pionkow na ukos
+//AI
+//check win
+//show result
+//reset
