@@ -38,6 +38,10 @@ class OpponentAI {
       board.position(board.fen());
       const newPos = board.position();
 
+      if (!rndMove) {
+        return this.generate(currentPositions, board, status);
+      }
+
       if (piece.includes('P') && rndMove.includes('1')) {
         const replace = (newPos[rndMove] = 'bQ');
         board.position(Chessboard.objToFen(newPos, replace));
