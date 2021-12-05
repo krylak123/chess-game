@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="panel__bottom-container">
-                    <!-- <div class="panel__rules-container">rules</div> -->
+                    <button type="button" class="modal__btn modal__btn--rules">rules</button>
                     <footer class="footer">
                         <div class="footer__img-container"><img src="./images/chesspieces/bK.png" alt="black king"
                                 class="footer__img"></div>
@@ -86,8 +86,28 @@
             </section>
             <section class="page__content content">
                 <div class="content__board" id="myBoard"></div>
-                <div class="content__modal content__modal--open">
-                    <button class="content__btn">start game</button>
+                <div class="modal modal__start modal--open">
+                    <h3 class="modal__title">Have Fun!</h3>
+                    <button class="modal__btn modal__btn--start">start game</button>
+                </div>
+                <div class="modal modal__gameover">
+                    <h3 class="modal__title">Game Over!</h3>
+                    <h4 class="modal__subtitle"><span class="modal__subtitle--winner"></span>win</h4>
+                    <button class="modal__btn modal__btn--gameover">restart game</button>
+                </div>
+                <div class="modal modal__rules">
+                    <h3 class="modal__title">Rules</h3>
+                    <ul class="modal__rules">
+                        <li class="modal__rules-text">You win when you take the opponent's king</li>
+                        <li class="modal__rules-text">Each piece can move up to one square</li>
+                        <li class="modal__rules-text">The pawn can only move forward</li>
+                        <li class="modal__rules-text">The Queen can go in any direction</li>
+                        <li class="modal__rules-text">The king can only move sideways</li>
+                        <li class="modal__rules-text">After reaching the last square of the board, the Pawn
+                            automatically turns into a Queen.</li>
+                        <li class="modal__rules-text">A pawn can capture only diagonally forward</li>
+
+                    </ul>
                 </div>
             </section>
         </main>

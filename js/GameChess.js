@@ -14,12 +14,15 @@ class GameChess {
     this.board = Chessboard(boardID, this.boardConfig);
     this.FENposition = FEN;
 
-    this.modalStart = document.querySelector('.content__modal');
+    this.modalRules = document.querySelector('.modal__rules');
+    this.modalStart = document.querySelector('.modal__start');
+    this.modalEnd = document.querySelector('.modal__gameover');
+    this.winnerInput = document.querySelector('.modal__subtitle--winner');
 
     this.init();
   }
 
-  onDragStart(source, piece, position) {
+  onDragStart(source, piece, position, orientation) {
     if (this.status.gameIsOver) return false;
     else if (piece.search(/^b/) !== -1 || this.status.gameTurn !== 'w') return false;
 
@@ -30,7 +33,7 @@ class GameChess {
     });
   }
 
-  onDrop(source, target, piece, newPos, oldPos) {
+  onDrop(source, target, piece, newPos, oldPos, orientation) {
     const legalMoves = this.moves.generateMoves(source, piece, oldPos);
 
     legalMoves.forEach(move => {
@@ -51,7 +54,7 @@ class GameChess {
     this.opponent.generate(newPos, this.board, this.status);
   }
 
-  onSnapbackEnd(square) {
+  onSnapbackEnd(piece, square, position, orientation) {
     document.querySelector(`[data-square=${square}]`).classList.add('illegalMove');
 
     setTimeout(() => {
@@ -59,14 +62,32 @@ class GameChess {
     }, 200);
   }
 
-  gameStart() {
-    this.modalStart.classList.remove('content__modal--open');
+  gameStart(isFirstGame) {
+    if (isFirstGame) {
+      this.modalStart.classList.remove('modal--open');
+    } else {
+      this.modalEnd.classList.remove('modal--open');
+    }
 
     this.board.position(this.FENposition);
   }
 
+  handleRulesModal() {
+    this.modalRules.classList.toggle('modal--open');
+  }
+
   init() {
-    document.querySelector('.content__btn').addEventListener('click', this.gameStart.bind(this));
+    document
+      .querySelector('.modal__btn--rules')
+      .addEventListener('click', this.handleRulesModal.bind(this));
+    document
+      .querySelector('.modal__btn--start')
+      .addEventListener('click', this.gameStart.bind(this, true));
+    document
+      .querySelector('.modal__btn--gameover')
+      .addEventListener('click', this.gameStart.bind(this, false));
+
+    window.addEventListener('resize', this.board.resize);
   }
 }
 
