@@ -36,7 +36,13 @@ class OpponentAI {
     setTimeout(() => {
       board.move(`${source}-${rndMove}`);
       board.position(board.fen());
-      status.checkIsWinner(board.position());
+      const newPos = board.position();
+
+      if (piece.includes('P') && rndMove.includes('1')) {
+        const replace = (newPos[rndMove] = 'bQ');
+        board.position(Chessboard.objToFen(newPos, replace));
+      }
+
       status.changeGameTurn('w');
     }, rndTime);
   }

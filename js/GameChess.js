@@ -19,7 +19,7 @@ class GameChess {
     this.init();
   }
 
-  onDragStart(source, piece, position, orientation) {
+  onDragStart(source, piece, position) {
     if (this.status.gameIsOver) return false;
     else if (piece.search(/^b/) !== -1 || this.status.gameTurn !== 'w') return false;
 
@@ -30,7 +30,7 @@ class GameChess {
     });
   }
 
-  onDrop(source, target, piece, newPos, oldPos, orientation) {
+  onDrop(source, target, piece, newPos, oldPos) {
     const legalMoves = this.moves.generateMoves(source, piece, oldPos);
 
     legalMoves.forEach(move => {
@@ -42,15 +42,16 @@ class GameChess {
     if (piece.includes('P') && target.includes('8')) {
       const replace = (newPos[target] = 'wQ');
       this.board.position(Chessboard.objToFen(newPos, replace));
+      this.status.changeGameTurn('b');
+      this.opponent.generate(newPos, this.board, this.status);
       return 'trash';
     }
 
-    this.status.checkIsWinner(newPos);
     this.status.changeGameTurn('b');
     this.opponent.generate(newPos, this.board, this.status);
   }
 
-  onSnapbackEnd(piece, square, position, orientation) {
+  onSnapbackEnd(square) {
     document.querySelector(`[data-square=${square}]`).classList.add('illegalMove');
 
     setTimeout(() => {
