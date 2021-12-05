@@ -2,6 +2,7 @@ class GameChess {
   constructor(boardID, FEN) {
     this.status = new Status();
     this.moves = new Moves();
+    this.opponent = new OpponentAI();
 
     this.boardConfig = {
       pieceTheme: './images/chesspieces/{piece}.png',
@@ -44,9 +45,9 @@ class GameChess {
       return 'trash';
     }
 
-    // this.status.changeGameTurn('b');
-    //check if is a winner (newPos)
-    //if legal updateStatus and start opponent AI
+    this.status.checkIsWinner(newPos);
+    this.status.changeGameTurn('b');
+    this.opponent.generate(newPos, this.board, this.status);
   }
 
   onSnapbackEnd(piece, square, position, orientation) {
@@ -70,7 +71,6 @@ class GameChess {
 
 //TODO
 //zbijanie pionkow na ukos
-//AI
 //check win
 //show result
 //reset
