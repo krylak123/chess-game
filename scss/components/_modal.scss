@@ -65,8 +65,15 @@
 
     &--winner {
       margin-right: 10px;
-      color: #008000;
     }
+  }
+
+  &__input {
+    margin-bottom: 20px;
+    padding: 6px 10px;
+    font-family: $font-family-primary;
+    font-size: 2rem;
+    text-align: center;
   }
 
   &__rules {

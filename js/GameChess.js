@@ -3,6 +3,7 @@ class GameChess {
     this.modalRules = document.querySelector('.modal__rules');
     this.modalStart = document.querySelector('.modal__start');
     this.modalEnd = document.querySelector('.modal__gameover');
+    this.modalInput = document.querySelector('.modal__input');
 
     this.status = new Status(this.modalEnd);
     this.moves = new Moves();
@@ -64,6 +65,7 @@ class GameChess {
 
   gameStart(isFirstGame) {
     if (isFirstGame) {
+      this.status.changePlayerName(this.modalInput.value);
       this.modalStart.classList.remove('modal--open');
     } else {
       this.board.clear(false);

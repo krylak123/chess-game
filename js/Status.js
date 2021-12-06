@@ -3,8 +3,13 @@ class Status {
     this.winnerInput = document.querySelector('.modal__subtitle--winner');
 
     this.modalGameover = modal;
+    this.playerName = '';
     this.gameIsOver = false;
     this.gameTurn = 'w';
+  }
+
+  changePlayerName(newName) {
+    this.playerName = newName;
   }
 
   changeGameIsOver(value) {
@@ -32,8 +37,13 @@ class Status {
 
     let winnerText = '';
 
-    if (winner === 'w') winnerText = 'Player';
-    else winnerText = 'Computer';
+    if (winner === 'w') {
+      winnerText = this.playerName ? this.playerName : 'Player';
+      this.winnerInput.style.color = 'green';
+    } else {
+      winnerText = 'Computer';
+      this.winnerInput.style.color = 'red';
+    }
 
     this.winnerInput.textContent = winnerText;
     this.modalGameover.classList.add('modal--open');
