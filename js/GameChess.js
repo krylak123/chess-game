@@ -1,6 +1,10 @@
 class GameChess {
   constructor(boardID, FEN) {
-    this.status = new Status();
+    this.modalRules = document.querySelector('.modal__rules');
+    this.modalStart = document.querySelector('.modal__start');
+    this.modalEnd = document.querySelector('.modal__gameover');
+
+    this.status = new Status(this.modalEnd);
     this.moves = new Moves();
     this.opponent = new OpponentAI();
 
@@ -13,11 +17,6 @@ class GameChess {
     };
     this.board = Chessboard(boardID, this.boardConfig);
     this.FENposition = FEN;
-
-    this.modalRules = document.querySelector('.modal__rules');
-    this.modalStart = document.querySelector('.modal__start');
-    this.modalEnd = document.querySelector('.modal__gameover');
-    this.winnerInput = document.querySelector('.modal__subtitle--winner');
 
     this.init();
   }
@@ -50,6 +49,7 @@ class GameChess {
       return 'trash';
     }
 
+    this.status.checkGameIsOver(newPos);
     this.status.changeGameTurn('b');
     this.opponent.generate(newPos, this.board, this.status);
   }
@@ -66,6 +66,9 @@ class GameChess {
     if (isFirstGame) {
       this.modalStart.classList.remove('modal--open');
     } else {
+      this.board.clear(false);
+      this.status.changeGameTurn('w');
+      this.status.changeGameIsOver(false);
       this.modalEnd.classList.remove('modal--open');
     }
 
@@ -93,6 +96,3 @@ class GameChess {
 
 //TODO
 //zbijanie pionkow na ukos
-//check win
-//show result
-//reset
