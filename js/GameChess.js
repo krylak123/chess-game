@@ -6,6 +6,7 @@ class GameChess {
     this.modalInput = document.querySelector('.modal__input');
 
     this.status = new Status(this.modalEnd);
+    this.timer = new Timer();
     this.moves = new Moves();
     this.opponent = new OpponentAI();
 
@@ -46,16 +47,16 @@ class GameChess {
       const replace = (newPos[target] = 'wQ');
       this.board.position(Chessboard.objToFen(newPos, replace));
       this.status.updatePanel(source, target, 'w');
-      this.status.checkGameIsOver(newPos);
+      this.status.checkGameIsOver(newPos, this.timer);
       this.status.changeGameTurn('b');
       this.opponent.generate(newPos, this.board, this.status);
       return 'trash';
     }
 
     this.status.updatePanel(source, target, 'w');
-    this.status.checkGameIsOver(newPos);
+    this.status.checkGameIsOver(newPos, this.timer);
     this.status.changeGameTurn('b');
-    this.opponent.generate(newPos, this.board, this.status);
+    this.opponent.generate(newPos, this.board, this.status, this.timer);
   }
 
   onSnapbackEnd(piece, square, position, orientation) {
@@ -71,6 +72,7 @@ class GameChess {
       this.status.changePlayerName(this.modalInput.value);
       this.modalStart.classList.remove('modal--open');
     } else {
+      this.timer.resetTimer();
       this.board.clear(false);
       this.status.resetPanel();
       this.status.changeGameTurn('w');
@@ -78,6 +80,7 @@ class GameChess {
       this.modalEnd.classList.remove('modal--open');
     }
 
+    this.timer.startTimer();
     this.board.position(this.FENposition);
   }
 

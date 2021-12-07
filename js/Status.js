@@ -57,7 +57,7 @@ class Status {
     this.gameTurn = turn;
   }
 
-  checkGameIsOver(positions) {
+  checkGameIsOver(positions, timer) {
     const posArray = [];
 
     for (let pos in positions) {
@@ -65,12 +65,14 @@ class Status {
     }
 
     if (!posArray.find(pos => pos === 'bK') || !posArray.find(pos => pos === 'wK')) {
-      this.handleGameIsOver(this.gameTurn);
+      this.handleGameIsOver(this.gameTurn, timer);
     }
   }
 
-  handleGameIsOver(winner) {
+  handleGameIsOver(winner, timer) {
     this.changeGameIsOver(true);
+    timer.stopTimer();
+
     this.statistics.updateStats(this.gameTurn);
 
     let winnerText = '';

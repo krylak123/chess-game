@@ -21,7 +21,7 @@ class OpponentAI {
     return Math.floor(Math.random() * max);
   }
 
-  generate(currentPositions, board, status) {
+  generate(currentPositions, board, status, timer) {
     if (status.gameIsOver) return;
     this.update(currentPositions);
 
@@ -48,7 +48,7 @@ class OpponentAI {
       }
 
       status.updatePanel(source, rndMove, 'b');
-      status.checkGameIsOver(newPos);
+      status.checkGameIsOver(newPos, timer);
       status.changeGameTurn('w');
     }, rndTime);
   }
