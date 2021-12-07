@@ -45,6 +45,8 @@ class GameChess {
     if (piece.includes('P') && target.includes('8')) {
       const replace = (newPos[target] = 'wQ');
       this.board.position(Chessboard.objToFen(newPos, replace));
+      this.status.updatePanel(source, target, 'w');
+      this.status.checkGameIsOver(newPos);
       this.status.changeGameTurn('b');
       this.opponent.generate(newPos, this.board, this.status);
       return 'trash';
