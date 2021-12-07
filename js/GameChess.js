@@ -50,6 +50,7 @@ class GameChess {
       return 'trash';
     }
 
+    this.status.updatePanel(source, target, 'w');
     this.status.checkGameIsOver(newPos);
     this.status.changeGameTurn('b');
     this.opponent.generate(newPos, this.board, this.status);
@@ -69,6 +70,7 @@ class GameChess {
       this.modalStart.classList.remove('modal--open');
     } else {
       this.board.clear(false);
+      this.status.resetPanel();
       this.status.changeGameTurn('w');
       this.status.changeGameIsOver(false);
       this.modalEnd.classList.remove('modal--open');

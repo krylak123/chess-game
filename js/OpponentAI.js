@@ -47,6 +47,7 @@ class OpponentAI {
         board.position(Chessboard.objToFen(newPos, replace));
       }
 
+      status.updatePanel(source, rndMove, 'b');
       status.checkGameIsOver(newPos);
       status.changeGameTurn('w');
     }, rndTime);
