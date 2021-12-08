@@ -1,8 +1,7 @@
 # Chess Game
 
 > A chess game created in Pure JS using Chessboard.js.
-> Available on [Netlify](https://chess-game-krylak123.netlify.app/) [![Netlify Status](https://api.netlify.com/api/v1/badges/a63477bd-ddd1-48cd-81e9-8babfcbab3c6/deploy-status)](https://app.netlify.com/sites/chess-game-krylak123/deploys)
-
+> Available on [Netlify](https://chess-game-krylak123.netlify.app/)
 ## General Information
 
 - Project insipred by [Space Tourism multi page website challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/space-tourism-multipage-website-gRWj1URZ3)
