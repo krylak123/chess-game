@@ -23,34 +23,126 @@ class Moves {
     return false;
   }
 
+  pawnMovesGenerator(moves, posY, posX, directions, position, piece) {
+    for (let direct of directions) {
+      const newPosY = posY + direct[0];
+      const newPosX = posX + direct[1];
+
+      if (newPosY < 0 || newPosX < 0 || newPosX > 7) continue;
+      if (this.checkPositionOccupiedByPiece(newPosY, newPosX, position, piece[0])) continue;
+
+      moves.push([newPosY, newPosX]);
+    }
+  }
+
   pawnMoves(piece, coords, position) {
     const moves = [];
 
     const posY = coords[0];
     const posX = coords[1];
 
-    const directionsW = [[-1, 0]];
-    const directionsB = [[1, 0]];
+    const directionsW = [-1, 0];
+    const directionsB = [1, 0];
 
     if (piece.search(/^w/) !== -1) {
-      for (let direct of directionsW) {
-        let newPosY = posY + direct[0];
-        let newPosX = posX + direct[1];
+      let newPosY = posY + directionsW[0];
+      let newPosX = posX + directionsW[1];
 
-        if (newPosY < 0) continue;
-        if (this.checkPositionOccupiedByPiece(newPosY, newPosX, position, piece[0])) continue;
+      const coord1 = this.coords.convertToBoardNotation([[newPosY, newPosX]]);
+      const coord2 = this.coords.convertToBoardNotation([[newPosY, newPosX - 1]]);
+      const coord3 = this.coords.convertToBoardNotation([[newPosY, newPosX + 1]]);
 
-        moves.push([newPosY, newPosX]);
+      if (position[coord1] && position[coord2] && position[coord3]) {
+        const directions = [
+          [-1, -1],
+          [-1, 1],
+        ];
+
+        this.pawnMovesGenerator(moves, posY, posX, directions, position, piece);
+      } else if (position[coord1] && !position[coord2] && position[coord3]) {
+        const directions = [[-1, 1]];
+
+        this.pawnMovesGenerator(moves, posY, posX, directions, position, piece);
+      } else if (position[coord1] && position[coord2] && !position[coord3]) {
+        const directions = [[-1, -1]];
+
+        this.pawnMovesGenerator(moves, posY, posX, directions, position, piece);
+      } else if (!position[coord1] && position[coord2] && position[coord3]) {
+        const directions = [
+          [-1, 0],
+          [-1, -1],
+          [-1, 1],
+        ];
+
+        this.pawnMovesGenerator(moves, posY, posX, directions, position, piece);
+      } else if (!position[coord1] && !position[coord2] && position[coord3]) {
+        const directions = [
+          [-1, 0],
+          [-1, 1],
+        ];
+
+        this.pawnMovesGenerator(moves, posY, posX, directions, position, piece);
+      } else if (!position[coord1] && position[coord2] && !position[coord3]) {
+        const directions = [
+          [-1, 0],
+          [-1, -1],
+        ];
+
+        this.pawnMovesGenerator(moves, posY, posX, directions, position, piece);
+      } else if (!position[coord1] && !position[coord2] && !position[coord3]) {
+        const directions = [[-1, 0]];
+
+        this.pawnMovesGenerator(moves, posY, posX, directions, position, piece);
       }
     } else {
-      for (let direct of directionsB) {
-        let newPosY = posY + direct[0];
-        let newPosX = posX + direct[1];
+      let newPosY = posY + directionsB[0];
+      let newPosX = posX + directionsB[1];
 
-        if (newPosY > 7) continue;
-        if (this.checkPositionOccupiedByPiece(newPosY, newPosX, position, piece[0])) continue;
+      const coord1 = this.coords.convertToBoardNotation([[newPosY, newPosX]]);
+      const coord2 = this.coords.convertToBoardNotation([[newPosY, newPosX - 1]]);
+      const coord3 = this.coords.convertToBoardNotation([[newPosY, newPosX + 1]]);
 
-        moves.push([newPosY, newPosX]);
+      if (position[coord1] && position[coord2] && position[coord3]) {
+        const directions = [
+          [1, -1],
+          [1, 1],
+        ];
+
+        this.pawnMovesGenerator(moves, posY, posX, directions, position, piece);
+      } else if (position[coord1] && !position[coord2] && position[coord3]) {
+        const directions = [[1, 1]];
+
+        this.pawnMovesGenerator(moves, posY, posX, directions, position, piece);
+      } else if (position[coord1] && position[coord2] && !position[coord3]) {
+        const directions = [[1, -1]];
+
+        this.pawnMovesGenerator(moves, posY, posX, directions, position, piece);
+      } else if (!position[coord1] && position[coord2] && position[coord3]) {
+        const directions = [
+          [1, 0],
+          [1, -1],
+          [1, 1],
+        ];
+
+        this.pawnMovesGenerator(moves, posY, posX, directions, position, piece);
+      } else if (!position[coord1] && !position[coord2] && position[coord3]) {
+        const directions = [
+          [1, 0],
+          [1, 1],
+        ];
+
+        this.pawnMovesGenerator(moves, posY, posX, directions, position, piece);
+      } else if (!position[coord1] && position[coord2] && !position[coord3]) {
+        const directions = [
+          [1, 0],
+          [1, -1],
+        ];
+
+        this.pawnMovesGenerator(moves, posY, posX, directions, position, piece);
+      } else if (!position[coord1] && !position[coord2] && !position[coord3]) {
+        const directions = [[1, 0]];
+
+        this.pawnMovesGenerator(moves, posY, posX, directions, position, piece);
       }
     }
 
