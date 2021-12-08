@@ -10,6 +10,8 @@ class Status {
     this.playerName = '';
     this.gameIsOver = false;
     this.gameTurn = 'w';
+
+    this.statistics.getStatsFromLocalStorage();
   }
 
   updatePanel(source, target, color) {

@@ -102,6 +102,3 @@ class GameChess {
     window.addEventListener('resize', this.board.resize);
   }
 }
-
-//TODO
-//zbijanie pionkow na ukos
