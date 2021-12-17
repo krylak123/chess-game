@@ -1,6 +1,7 @@
 # Chess Game
 
 > A chess game created in Pure JS using Chessboard.js.
+> Simpler chess rules
 > Available on [Netlify](https://chess-game-krylak123.netlify.app/)
 
 ## Technologies Used
